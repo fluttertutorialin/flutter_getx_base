@@ -12,10 +12,10 @@ class BaseResponse<T> {
   const BaseResponse({this.data, this.metaData});
 
   @JsonProperty(name: 'results')
-  final T data;
+  final T? data;
 
   @JsonProperty(name: 'meta_data')
-  final MetaData metaData;
+  final MetaData? metaData;
 
   factory BaseResponse.of(BaseResponse<dynamic> other) => BaseResponse<T>(
         data: other.data,
@@ -28,5 +28,5 @@ class MetaData {
   const MetaData({this.page});
 
   @JsonProperty(name: 'page')
-  final int page;
+  final int? page;
 }

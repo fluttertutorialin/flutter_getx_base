@@ -16,43 +16,48 @@ class LoadmoreScreen extends BaseScaffold<LoadmoreController> {
   @override
   Widget buildChild(BuildContext context) {
     return controller.userListState.obx(
-      (data) => InfiniteScrollList(
-        state: controller.userListState,
-        builder: (controller) {
-          return ListView.separated(
-            controller: controller,
-            itemBuilder: (BuildContext context, int index) {
-              return _buildItem(context, data[index]);
-            },
-            itemCount: data.length,
-            separatorBuilder: (BuildContext context, int index) {
-              return Divider();
-            },
-          );
-        },
-        onLoadMore: controller.getUserList,
-        onRefresh: () async {
-          controller.getUserList();
-        },
-      ),
+      (data) => data != null
+          ? InfiniteScrollList(
+              state: controller.userListState,
+              builder: (controller) {
+                return ListView.separated(
+                  controller: controller,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _buildItem(context, data[index]);
+                  },
+                  itemCount: data.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider();
+                  },
+                );
+              },
+              onLoadMore: controller.getUserList,
+              onRefresh: () async {
+                controller.getUserList();
+              },
+            )
+          : Container(),
       onError: (_) => Container(),
     );
   }
 
   Widget _buildItem(BuildContext context, UserModel model) {
-    return ListTile(
-      onTap: () {
-        controller.goToLoadmore();
-      },
-      leading: ClipOval(
-        child: Image.network(
-          model.pictureModel.medium,
-          width: fixed(PixelRatio.dp50),
-          height: fixed(PixelRatio.dp50),
+    return Container(
+      width: 200,
+      child: ListTile(
+        onTap: () {
+          controller.goToLoadmore();
+        },
+        leading: ClipOval(
+          child: Image.network(
+            model.pictureModel?.medium ?? '',
+            width: fixed(PixelRatio.dp50),
+            height: fixed(PixelRatio.dp50),
+          ),
         ),
+        title: Text(model.name?.first ?? ''),
+        subtitle: Text(model.email ?? ''),
       ),
-      title: Text(model.name.first),
-      subtitle: Text(model.email),
     );
   }
 }

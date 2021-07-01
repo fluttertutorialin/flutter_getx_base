@@ -16,12 +16,27 @@ class HomeController extends BaseController {
 
   final LogoutUseCase _logoutUseCase;
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+  }
+
   void goToLoadMoreScreen() {
     Get.toNamed(AppRoute.routeLoadmoreScreen());
   }
 
   void goToRefreshTokenScreen() {
     Get.toNamed(AppRoute.routeRefreshTokenScreen());
+  }
+
+  void goToAnimationScreen() {
+    Get.toNamed(AppRoute.routeAnimationScreen());
   }
 
   void onLogout() {

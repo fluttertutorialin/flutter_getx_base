@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 int inititalPage = 1;
 
 class ProcessState<T> extends GetxController with StateMixin<T> {
-  int nextPage = inititalPage;
-  T data;
+  int? nextPage = inititalPage;
+  T? data;
 
   ProcessState() {
     change(null, status: RxStatus.empty());
   }
 
-  void onSuccess({T data, int nextPage}) {
+  void onSuccess({T? data, int? nextPage}) {
     this.nextPage = nextPage;
 
     if (status.isLoadingMore) {
@@ -21,12 +21,12 @@ class ProcessState<T> extends GetxController with StateMixin<T> {
     }
   }
 
-  void onError(String message) {
+  void onError(String? message) {
     change(null, status: RxStatus.error(message));
   }
 
   void onLoading() {
-    if (nextPage > inititalPage) {
+    if (nextPage! > inititalPage) {
       change(value, status: RxStatus.loadingMore());
     } else {
       change(null, status: RxStatus.loading());

@@ -15,7 +15,7 @@ class UserRemoteDataSource {
   final BengKeiApiProvider _bengKeiApiProvider = Get.find();
   final RefreshTokenApiProvider _refreshTokenApiProvider = Get.find();
 
-  Future<Pair<List<UserModel>, int>> getUsers(int page) {
+  Future<Pair<List<UserModel>?, int>> getUsers(int? page) {
     return _andomeUserApiProvider.getUser(page);
   }
 
@@ -23,11 +23,11 @@ class UserRemoteDataSource {
     return _bengKeiApiProvider.registerUser(request);
   }
 
-  Future<TokenModel> login(LoginRequest request) {
+  Future<TokenModel?> login(LoginRequest request) {
     return _bengKeiApiProvider.login(request);
   }
 
-  Future<TokenModel> refreshToken(RefreshTokenRequest request) {
+  Future<TokenModel?> refreshToken(RefreshTokenRequest request) {
     return _refreshTokenApiProvider.refreshToken(request);
   }
 

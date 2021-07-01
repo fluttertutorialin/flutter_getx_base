@@ -8,8 +8,8 @@ class LoginUseCase extends UseCase<void, LoginInput> {
   final UserRepositoryImpl userRepositoryImpl;
 
   @override
-  Future<void> buildUseCase(LoginInput input) {
-    return userRepositoryImpl.login(input.toRequest());
+  Future<void> buildUseCase(LoginInput? input) {
+    return userRepositoryImpl.login(input!.toRequest());
   }
 }
 

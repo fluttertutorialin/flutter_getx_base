@@ -7,5 +7,5 @@ class RefreshTokenRequest {
   @JsonProperty(name: 'grant_type')
   String grantTpe;
   @JsonProperty(name: 'refresh_token')
-  String refreshToken;
+  String? refreshToken;
 }

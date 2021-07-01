@@ -5,7 +5,7 @@ import 'package:flutter_getx_base/domain/usecases/base/base_observer.dart';
 import 'package:flutter_getx_base/domain/usecases/get_user_use_case.dart';
 import 'package:flutter_getx_base/presentation/base_controller.dart';
 import 'package:flutter_getx_base/utils/config/app_route.dart';
-import 'package:flutter_getx_base/utils/cores/dialog.dart';
+import 'package:flutter_getx_base/utils/dilog/dialog.dart';
 import 'package:get/get.dart';
 
 class LoadmoreBinding extends Bindings {
@@ -32,8 +32,8 @@ class LoadmoreController extends BaseController {
     super.onInit();
     userListState.addListener(() async {
       if (userListState.status.isError) {
-        bool result =
-            await showConfirmDialog(userListState.status.errorMessage);
+        bool? result =
+            await showConfirmDialog(userListState.status.errorMessage!);
         print(result);
       }
     });

@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 class UserLocalDataSource {
   final StorageProvider _storageProvider = Get.find();
 
-  String getUsername() => _storageProvider.getUsername();
+  String? getUsername() => _storageProvider.getUsername();
 
   Future<void> saveUsername(String username) =>
       _storageProvider.saveUsername(username);
 
-  TokenModel getToken() => _storageProvider.getToken();
+  TokenModel? getToken() => _storageProvider.getToken();
 
-  Future<void> saveToken(TokenModel token) => _storageProvider.saveToken(token);
+  Future<void> saveToken(TokenModel? token) => _storageProvider.saveToken(token);
 
   void logout() => _storageProvider.clearToken();
 }

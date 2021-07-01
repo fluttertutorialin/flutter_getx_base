@@ -11,7 +11,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
-    this.appConfig,
+    required this.appConfig,
   });
 
   final AppConfig appConfig;
@@ -20,8 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(PixelRatio.initPRWidth, PixelRatio.initPRHeight),
-      allowFontScaling: false,
-      child: GetMaterialApp(
+      builder: () => GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,

@@ -2,13 +2,13 @@ import 'dart:async';
 import 'base_observer.dart';
 
 abstract class UseCase<T, Input> {
-  CompositeSubscription _disposables;
+  late CompositeSubscription _disposables;
 
   UseCase() {
     _disposables = CompositeSubscription();
   }
 
-  Future<Stream<T>> _buildUseCaseStream(Input input) async {
+  Future<Stream<T>> _buildUseCaseStream(Input? input) async {
     final controller = StreamController<T>();
     try {
       final value = await buildUseCase(input);
@@ -21,9 +21,9 @@ abstract class UseCase<T, Input> {
     return controller.stream;
   }
 
-  Future<T> buildUseCase(Input input);
+  Future<T> buildUseCase(Input? input);
 
-  Future<void> execute({Observer<T> observer, Input input}) async {
+  Future<void> execute({Observer<T>? observer, Input? input}) async {
     observer?.onSubscribe();
     final StreamSubscription subscription =
         (await _buildUseCaseStream(input)).listen(
@@ -113,7 +113,7 @@ class CompositeSubscription {
   }
 
   /// Pauses all subscriptions added to this composite.
-  void pauseAll([Future resumeSignal]) =>
+  void pauseAll([Future? resumeSignal]) =>
       _subscriptionsList.forEach((it) => it.pause(resumeSignal));
 
   /// Resumes all subscriptions added to this composite.

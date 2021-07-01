@@ -26,11 +26,7 @@ double scaleHeight(double height) => height.h;
 
 double scaleWidth(double width) => width.w;
 
-// sp allow scale with system font
-double sp(double size) => size.ssp;
-
-// sp non allow scale with system font
-double fixedSp(double size) => size.nsp;
+double sp(double size) => size.sp;
 
 double screenWidth() => ScreenUtil().screenWidth;
 

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_getx_base/domain/service/auth_service.dart';
+import 'package:flutter_getx_base/presentation/animation/animations_controller.dart';
+import 'package:flutter_getx_base/presentation/animation/animations_screen.dart';
+import 'package:flutter_getx_base/utils/service/auth_service.dart';
 import 'package:flutter_getx_base/presentation/home/home_controller.dart';
 import 'package:flutter_getx_base/presentation/home/home_screen.dart';
 import 'package:flutter_getx_base/presentation/loadmoreuser/loadmore_user_controller.dart';
@@ -17,6 +19,7 @@ class AppRoute {
   static String routeSearchScreen() => '/search';
   static String routeLoadmoreScreen() => '/loadmore';
   static String routeRefreshTokenScreen() => '/refresh_token';
+  static String routeAnimationScreen() => '/animation';
 
   static List<GetPage> generateGetPages() => [
         GetPage(
@@ -24,7 +27,6 @@ class AppRoute {
           page: () => HomeScreen(),
           binding: HomeBinding(),
           transition: Transition.cupertino,
-          middlewares: [AuthenMiddleware()],
           children: [
             GetPage(
               transition: Transition.cupertino,
@@ -49,6 +51,13 @@ class AppRoute {
           name: routeRefreshTokenScreen(),
           page: () => RefreshTokenScreen(),
           binding: RefreshTokenBinding(),
+          middlewares: [AuthenMiddleware()],
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: routeAnimationScreen(),
+          page: () => AnimationsScreen(),
+          binding: AnimationsBinding(),
           transition: Transition.cupertino,
         ),
       ];
@@ -56,7 +65,7 @@ class AppRoute {
 
 class AuthenMiddleware extends GetMiddleware {
   @override
-  RouteSettings redirect(String route, {Object arguments}) {
+  RouteSettings? redirect(String? route, {Object? arguments}) {
     var isLogged = Get.find<AuthService>().hasLogin();
     return isLogged
         ? null

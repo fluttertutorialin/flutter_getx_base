@@ -14,7 +14,7 @@ class UserRepositoryImpl extends UserRepository {
   final UserLocalDataSource _localDataSource = UserLocalDataSource();
 
   @override
-  Future<Pair<List<UserModel>, int>> getUsers(int page) {
+  Future<Pair<List<UserModel>?, int>> getUsers(int? page) {
     return _remoteDataSource.getUsers(page);
   }
 
@@ -24,12 +24,12 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  TokenModel getToken() {
+  TokenModel? getToken() {
     return _localDataSource.getToken();
   }
 
   @override
-  Future<void> saveToken(TokenModel token) {
+  Future<void> saveToken(TokenModel? token) {
     return _localDataSource.saveToken(token);
   }
 
@@ -42,12 +42,12 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<TokenModel> refreshToken() {
-    var currentToken = getToken();
+    var currentToken = getToken()!;
     return _remoteDataSource
         .refreshToken(
             RefreshTokenRequest('refresh_token', currentToken.refreshToken))
         .then((token) {
-      return saveToken(token).then((_) => token);
+      return saveToken(token).then((_) => token!);
     });
   }
 

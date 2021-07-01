@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future<T> showConfirmDialog<T>(String title,
+Future<T?> showConfirmDialog<T>(String title,
     {String positiveTitle = 'OK', String negativeTitle = 'CANCEL'}) {
   return Get.dialog(CupertinoAlertDialog(
     title: Text(title),
