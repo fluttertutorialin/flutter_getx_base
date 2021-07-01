@@ -13,7 +13,7 @@ class RefreshTokenApiProvider extends BaseProvider {
     httpClient.baseUrl = "http://bengkelrobot.net:8002";
     httpClient.timeout = Duration(seconds: 15);
 
-    httpClient.addRequestModifier((request) async {
+    httpClient.addRequestModifier<dynamic>((request) async {
       request.headers['Authorization'] = 'Basic ' +
           base64Encode(
               utf8.encode('bengkel-robot-client:bengkel-robot-secret'));
@@ -21,11 +21,11 @@ class RefreshTokenApiProvider extends BaseProvider {
     });
   }
 
-  Future<TokenModel> refreshToken(RefreshTokenRequest request) {
+  Future<TokenModel?> refreshToken(RefreshTokenRequest request) {
     return postDeserialize<TokenModel>(
       '/oauth/token',
       FormData(
-        JsonMapper.toMap(request),
+        JsonMapper.toMap(request)!,
       ),
     );
   }

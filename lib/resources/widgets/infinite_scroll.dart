@@ -12,11 +12,11 @@ class InfiniteScrollList extends StatefulWidget {
   const InfiniteScrollList({
     this.onLoadMore,
     this.onRefresh,
-    @required this.state,
-    @required this.builder,
+    required this.state,
+    required this.builder,
   });
-  final FutureCallback onRefresh;
-  final VoidCallback onLoadMore;
+  final FutureCallback? onRefresh;
+  final VoidCallback? onLoadMore;
   final WidgetCallback builder;
   final ProcessState state;
 
@@ -37,7 +37,7 @@ class _InfiniteScrollListState extends State<InfiniteScrollList> {
             !widget.state.status.isLoadingMore &&
             currentMaxExtent != _scrollController.position.maxScrollExtent) {
           currentMaxExtent = _scrollController.position.maxScrollExtent;
-          widget.onLoadMore.call();
+          widget.onLoadMore!.call();
         }
       });
     }
@@ -57,7 +57,7 @@ class _InfiniteScrollListState extends State<InfiniteScrollList> {
             child: widget.builder(_scrollController),
             onRefresh: () async {
               widget.state.onRefreshing();
-              await widget.onRefresh();
+              await widget.onRefresh!();
             },
           );
   }

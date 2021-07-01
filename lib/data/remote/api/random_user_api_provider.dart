@@ -11,9 +11,9 @@ class RandomUserApiProvider extends BaseProvider {
     httpClient.timeout = Duration(seconds: 15);
   }
 
-  Future<Pair<List<UserModel>, int>> getUser(int page) async {
+  Future<Pair<List<UserModel>?, int>> getUser(int? page) async {
     return getDeserialize<BaseResponse<List<UserModel>>>(
             '/api/?page=$page&results=10')
-        .then((value) => Pair(value.data, page + 1));
+        .then((value) => Pair(value!.data, page! + 1));
   }
 }

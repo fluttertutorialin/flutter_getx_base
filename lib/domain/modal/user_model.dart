@@ -5,26 +5,26 @@ import 'package:flutter_getx_base/domain/modal/picture_model.dart';
 @jsonSerializable
 class UserModel {
   @JsonProperty(name: 'gender')
-  String gender;
+  String? gender;
 
   @JsonProperty(name: 'name')
-  NameModel name;
+  NameModel? name;
 
   @JsonProperty(name: 'email')
-  String email;
+  String? email;
 
   @JsonProperty(name: 'phone')
-  String phoneNumber;
+  String? phoneNumber;
 
   @JsonProperty(name: 'cell')
-  String cellNumber;
+  String? cellNumber;
 
   @JsonProperty(name: 'picture')
-  PictureModel pictureModel;
+  PictureModel? pictureModel;
 
   @JsonProperty(converterParams: {'format': 'MM-dd-yyyy H:m:s'})
-  DateTime lastPromotionDate = DateTime(2008, 05, 13, 22, 33, 44);
+  DateTime? lastPromotionDate = DateTime(2008, 05, 13, 22, 33, 44);
 
   @JsonProperty(converterParams: {'format': 'MM/dd/yyyy'})
-  DateTime hireDate = DateTime(2003, 02, 28);
+  DateTime? hireDate = DateTime(2003, 02, 28);
 }

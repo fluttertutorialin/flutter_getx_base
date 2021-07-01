@@ -12,10 +12,10 @@ class BengKeiBaseResponse<T> {
   const BengKeiBaseResponse({this.data, this.diagnostic});
 
   @JsonProperty(name: 'users')
-  final T data;
+  final T? data;
 
   @JsonProperty(name: 'diagnostic')
-  final Diagnostic diagnostic;
+  final Diagnostic? diagnostic;
 
   factory BengKeiBaseResponse.of(BengKeiBaseResponse<dynamic> other) =>
       BengKeiBaseResponse<T>(
@@ -27,11 +27,11 @@ class BengKeiBaseResponse<T> {
 @jsonSerializable
 class Diagnostic {
   @JsonProperty(name: 'status')
-  int status;
+  int? status;
 
   @JsonProperty(name: 'message')
-  String message;
+  String? message;
 
   @JsonProperty(name: 'unix_timestamp')
-  int unixTimestamp;
+  int? unixTimestamp;
 }

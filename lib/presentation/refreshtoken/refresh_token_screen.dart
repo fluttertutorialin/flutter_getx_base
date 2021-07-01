@@ -15,21 +15,23 @@ class RefreshTokenScreen extends BaseScaffold<RefreshTokenController> {
   @override
   Widget buildChild(BuildContext context) {
     return controller.bengKeiUserListState.obx(
-      (data) => InfiniteScrollList(
-        state: controller.bengKeiUserListState,
-        builder: (controller) {
-          return ListView.separated(
-            controller: controller,
-            itemBuilder: (BuildContext context, int index) {
-              return _buildItem(context, data[index]);
-            },
-            itemCount: data.length,
-            separatorBuilder: (BuildContext context, int index) {
-              return Divider();
-            },
-          );
-        },
-      ),
+      ((data) => data != null
+          ? InfiniteScrollList(
+              state: controller.bengKeiUserListState,
+              builder: (controller) {
+                return ListView.separated(
+                  controller: controller,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _buildItem(context, data[index]);
+                  },
+                  itemCount: data.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider();
+                  },
+                );
+              },
+            )
+          : Container()),
       onError: (_) => Container(),
     );
   }
@@ -43,7 +45,7 @@ class RefreshTokenScreen extends BaseScaffold<RefreshTokenController> {
           iconSize: fixed(PixelRatio.dp50),
         ),
       ),
-      title: Text(model.userName),
+      title: Text(model.userName ?? ''),
       subtitle: Text(model.age.toString()),
     );
   }

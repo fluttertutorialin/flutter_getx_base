@@ -5,7 +5,7 @@ class BaseErrorResponse {
   const BaseErrorResponse({this.status});
 
   @JsonProperty(name: 'status')
-  final Status status;
+  final Status? status;
 }
 
 @jsonSerializable
@@ -16,8 +16,8 @@ class Status {
   });
 
   @JsonProperty(name: 'message')
-  final String message;
+  final String? message;
 
   @JsonProperty(name: 'status')
-  final int statusCode;
+  final int? statusCode;
 }

@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 class StylesManager {
   static StylesManager instance() => Get.find();
 
-  TextStyle _roboto13Regular;
-  TextStyle _roboto16Regular;
+  TextStyle? _roboto13Regular;
+  TextStyle? _roboto16Regular;
 
   TextStyle roboto13Regular() => _roboto13Regular ??= TextStyle(
         fontSize: 13,

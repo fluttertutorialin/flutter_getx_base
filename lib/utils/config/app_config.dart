@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 
 class AppConfig {
   AppConfig({
-    @required this.baseURL,
+    required this.baseURL,
     this.somethingKey,
   });
 
   final String baseURL;
-  final String somethingKey;
+  final String? somethingKey;
 
   factory AppConfig.fromDEV() => AppConfig(
         baseURL: '',

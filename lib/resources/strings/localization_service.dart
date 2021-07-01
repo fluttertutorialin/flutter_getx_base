@@ -25,7 +25,7 @@ class LocalizationService extends Translations {
   });
 
   static void changeLocale(String langCode) {
-    final locale = _getLocaleFromLanguage(langCode: langCode);
+    final locale = _getLocaleFromLanguage(langCode: langCode)!;
     Get.updateLocale(locale);
   }
 
@@ -35,8 +35,8 @@ class LocalizationService extends Translations {
         'vi_VN': vi,
       };
 
-  static Locale _getLocaleFromLanguage({String langCode}) {
-    var lang = langCode ?? Get.deviceLocale.languageCode;
+  static Locale? _getLocaleFromLanguage({String? langCode}) {
+    var lang = langCode ?? Get.deviceLocale!.languageCode;
     for (int i = 0; i < langCodes.length; i++) {
       if (lang == langCodes[i]) return locales[i];
     }

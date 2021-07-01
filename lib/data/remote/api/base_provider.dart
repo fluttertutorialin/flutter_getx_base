@@ -3,11 +3,11 @@ import 'package:flutter_getx_base/data/remote/api/error/network_exception.dart';
 import 'package:get/get.dart';
 
 class BaseProvider extends GetConnect {
-  Future<T> getDeserialize<T>(String url,
-      {Map<String, String> headers,
-      String contentType,
-      Map<String, dynamic> query,
-      Decoder decoder}) {
+  Future<T?> getDeserialize<T>(String url,
+      {Map<String, String>? headers,
+      String? contentType,
+      Map<String, dynamic>? query,
+      Decoder? decoder}) {
     return super
         .get(url,
             headers: headers,
@@ -19,14 +19,14 @@ class BaseProvider extends GetConnect {
         );
   }
 
-  Future<T> putDeserialize<T>(
+  Future<T?> putDeserialize<T>(
     String url,
     dynamic body, {
-    String contentType,
-    Map<String, String> headers,
-    Map<String, dynamic> query,
-    Decoder decoder,
-    Progress uploadProgress,
+    String? contentType,
+    Map<String, String>? headers,
+    Map<String, dynamic>? query,
+    Decoder? decoder,
+    Progress? uploadProgress,
   }) {
     return super
         .put(
@@ -43,14 +43,14 @@ class BaseProvider extends GetConnect {
         );
   }
 
-  Future<T> postDeserialize<T>(
+  Future<T?> postDeserialize<T>(
     String url,
     dynamic body, {
-    String contentType,
-    Map<String, String> headers,
-    Map<String, dynamic> query,
-    Decoder decoder,
-    Progress uploadProgress,
+    String? contentType,
+    Map<String, String>? headers,
+    Map<String, dynamic>? query,
+    Decoder? decoder,
+    Progress? uploadProgress,
   }) {
     return super
         .post(
@@ -67,9 +67,11 @@ class BaseProvider extends GetConnect {
         );
   }
 
-  Future<T> _mapToResponse<T>(Response response) async {
+  Future<T?> _mapToResponse<T>(Response response) async {
     if (response.status.isOk) {
-      return T != dynamic ? JsonMapper.deserialize<T>(response.bodyString) : T;
+      return T != dynamic
+          ? JsonMapper.deserialize<T>(response.bodyString)
+          : null;
     } else
       throw NetWorkException.fromResponse(response);
   }

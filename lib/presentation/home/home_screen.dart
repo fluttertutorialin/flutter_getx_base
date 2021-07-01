@@ -23,6 +23,10 @@ class HomeScreen extends BaseScaffold<HomeController> {
             child: Text('Refresh token mode'),
           ),
           ElevatedButton(
+            onPressed: controller.goToAnimationScreen,
+            child: Text('Animation mode'),
+          ),
+          ElevatedButton(
             onPressed: controller.onLogout,
             child: Text('Logout'),
           )

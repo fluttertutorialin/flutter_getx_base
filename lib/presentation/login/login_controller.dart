@@ -31,7 +31,7 @@ class LoginController extends BaseController {
         },
         onSuccess: (_) {
           loginState.onSuccess();
-          Get.offAllNamed(AppRoute.routeHomeScreen());
+          Get.offAllNamed(AppRoute.routeRefreshTokenScreen());
         },
         onError: (NetWorkException e) {
           loginState.onError(e.toString());
